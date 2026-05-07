@@ -1,7 +1,5 @@
-const { PrismaClient } = require('@prisma/client');
+const { prisma } = require('../prisma/config');
 const aiService = require('../services/aiService');
-
-const prisma = new PrismaClient();
 
 const reviewCode = async (req, res, next) => {
   try {
