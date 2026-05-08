@@ -14,7 +14,9 @@ const mockPrisma = {
       ) || null;
     },
     findUnique: async ({ where }) => {
-      return mockUsers.find(u => u.id === where.id) || null;
+      if (where.id) return mockUsers.find(u => u.id === where.id) || null;
+      if (where.email) return mockUsers.find(u => u.email === where.email) || null;
+      return null;
     },
     create: async ({ data }) => {
       const user = { ...data, id: Date.now().toString(), createdAt: new Date(), updatedAt: new Date() };
