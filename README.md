@@ -1,6 +1,6 @@
 # AI Code Reviewer - Full-Stack SaaS Application
 
-A modern, AI-powered code review platform built with React, Node.js, Express, PostgreSQL, and Prisma. Get intelligent code analysis, bug detection, security suggestions, and performance optimization recommendations.
+A modern, AI-powered code review platform built with React, Node.js, Express, MongoDB, and Prisma.
 
 ## 🚀 Features
 
@@ -59,7 +59,7 @@ A modern, AI-powered code review platform built with React, Node.js, Express, Po
 
 ### Backend
 - **Node.js** with Express.js
-- **PostgreSQL** database
+- **MongoDB** database
 - **Prisma ORM** for database management
 - **JWT** for authentication
 - **bcrypt** for password hashing
@@ -124,9 +124,11 @@ ai-code-reviewer/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- PostgreSQL 14+
+- Node.js 18+
+- MongoDB (provide `DATABASE_URL` in `backend/.env`)
+
 - npm or yarn
+
 
 ### 1. Clone the Repository
 ```bash
@@ -139,16 +141,17 @@ cd AI-Code-Reviewer
 cd backend
 npm install
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your configuration
+# Create env file
+# Note: this repo expects you to create `.env` (there may or may not be an `.env.example` in the repo)
+copy .env.example .env
+# or create .env manually
 
-# Set up database
-npx prisma migrate dev
+# Generate Prisma client
 npx prisma generate
 
 # Start development server
 npm run dev
+
 ```
 
 ### 3. Frontend Setup
@@ -174,7 +177,7 @@ npm run dev
 ### Backend (.env)
 ```env
 # Database
-DATABASE_URL="postgresql://username:password@localhost:5432/ai_code_reviewer?schema=public"
+DATABASE_URL="mongodb+srv://username:password@cluster0.mongodb.net/ai_code_reviewer?retryWrites=true&w=majority"
 
 # JWT
 JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
@@ -203,7 +206,8 @@ VITE_APP_VERSION=1.0.0
 
 ## 🗄 Database Schema
 
-The application uses PostgreSQL with the following main models:
+The application uses MongoDB with the following main models:
+
 
 ### User
 - Authentication and user information
@@ -252,7 +256,7 @@ The application uses PostgreSQL with the following main models:
 4. Deploy automatically
 
 ### Database (Neon/Supabase)
-1. Create PostgreSQL database
+1. Create MongoDB database
 2. Get connection string
 3. Update DATABASE_URL in backend
 4. Run migrations
